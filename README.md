@@ -1,66 +1,39 @@
-## Foundry
+# FundMe Smart Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Overview
 
-Foundry consists of:
+The `FundMe` smart contract allows users to contribute funds to a pool and provides mechanisms for the owner to withdraw these funds. This contract uses Chainlink oracles to fetch the latest ETH/USD price to ensure that all contributions meet a minimum USD value.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Features
+- **Fund**: Allows users to contribute funds.
+- **Withdraw**: Allows the owner to withdraw all funds.
+- **Cheaper Withdraw**: A more gas-efficient withdrawal method for the owner.
+- **Price Feed Integration**: Uses Chainlink to get the latest ETH/USD price.
 
-## Documentation
+## Prerequisites
+- Solidity `^0.8.2`
+- Chainlink AggregatorV3Interface
+- PriceConverter library
 
-https://book.getfoundry.sh/
+## Installation
+1. **Clone the repository**:
+    ```sh
+    git clone https://github.com/your-repo/FundMe.git
+    cd FundMe
+    ```
+
+2. **Install dependencies**:
+    Ensure you have the required dependencies installed, such as OpenZeppelin for the `AggregatorV3Interface`.
+
+3. **Compile the contract**:
+    Use your preferred Solidity compiler to compile the `FundMe.sol` contract.
 
 ## Usage
+1. **Deploy the contract**:
+    Deploy the `FundMe` contract, providing the address of the Chainlink price feed as a parameter.
 
-### Build
+2. **Fund the contract**:
+    Call the `fund` function and send ETH. The contract checks if the sent ETH value is equivalent to or above the minimum USD value.
 
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+3. **Withdraw funds**:
+    Only the contract owner can call the `withdraw` or `cheaperWithdraw` functions to withdraw the accumulated funds.
