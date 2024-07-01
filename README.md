@@ -18,7 +18,7 @@ The `FundMe` smart contract allows users to contribute funds to a pool and provi
 ## Installation
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/your-repo/FundMe.git
+    git clone https://github.com/repo/FundMe.git
     cd FundMe
     ```
 
